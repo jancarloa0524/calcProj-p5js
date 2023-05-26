@@ -32,27 +32,41 @@
             }
 
             function draw() {
+                console.log(mouseX, mouseY)
                 // set-up
                 strokeWeight(0.4)
                 background("white")
                 stroke("black")
                 fill("black")
                 //table
-                line(80,10,80,200)
-                line(linePos[step], 10, linePos[step], 200)
-                line(10, 45, 700, 45)
+                line(80,140,80,270)
+                line(linePos[step], 140, linePos[step], 270)
+                line(10, 180, 700, 180)
                 // text
+                
+                textSize(10)
+                text("Click Arrows/Arrow Keys to cycle through solution", 303, 535, 100, 40)
+                textSize(20)
+                textAlign(LEFT)
+                text("In quadrilateral ABCD, E and F are points on BC and AD, respectively, and BGD and EGF are down such that ∠ABG ≅ ∠CDG, AB ≅ CD, AF ≅ EC.", 10, 50, 800, 200)
                 textSize(25)
                 textAlign(CENTER)
-                text("Step", 35, 35)
-                text("Statement", 150, 35)
-                text("Explanation", linePos[step] + 80, 35)
+                text("G. January 2020", 100, 30)
+                text("Step", 35, 170)
+                text("Statement", 150, 170)
+                text("Explanation", linePos[step] + 80, 170)
+                text("Prove: FG ≅ EG", 100, 560)
                 textAlign(LEFT)
-                text(step + 1, 35, 90)
-                text(equations[step], 100, 70, 223, 100)
-                text(explanation[step], linePos[step] + 10, 70, 450, 200)
-                
-                
+                text(step + 1, 35, 230)
+                text(equations[step], 100, 200, 223, 100)
+                text(explanation[step], linePos[step] + 10, 200, 450, 200)
+                // arrow keys
+                if (step < 8) {
+                    triangle(450, 550, 400, 530, 400, 570)
+                }
+                if (step > 0) {
+                    triangle(250, 550, 300, 530, 300, 570)
+                }
                 // shape
                 strokeWeight(2)
                 fill("red")
@@ -121,7 +135,7 @@
                                         line(280, 445, 320, 465)
                                         line(290, 440, 330, 460)
                                         line(300, 435, 340, 455)
-                                        text("Solved!", 350, 200)
+                                        text("Solved!", 10, 590)
                                     }
                             }
                         }
@@ -168,6 +182,14 @@
                 }
             }
             
+            function mouseClicked(){
+                if((mouseX > 250 && mouseX < 300) && (mouseY > 530 && mouseY < 570) && step > 0) {
+                    step--
+                }
+                if ((mouseX > 400 && mouseX < 450) &&  (mouseY > 530 && mouseY < 570) && step < 8) {
+                    step++
+                }
+            }
         </script>
     </body>
 </html>
