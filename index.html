@@ -10,7 +10,7 @@
             /* CSS */
         </style>
         
-        <title>Title</title>
+        <title>P5JS Calculus Project</title>
     </head>
     <body>
         <!-- HTML -->
@@ -18,13 +18,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
         <script>
             // JS
-            
-            let cycle = 0
+            let step = 0
             let nums
             let equations
             let explanation
             let linePos
-            let explainPos
 
             function setup() {
                 createCanvas(800, 600)
@@ -35,388 +33,138 @@
 
             function draw() {
                 // set-up
+                strokeWeight(0.4)
                 background("white")
                 stroke("black")
-                strokeWeight(0.5)
+                fill("black")
                 //table
                 line(80,10,80,200)
-                line(linePos[cycle], 10, linePos[cycle], 200)
+                line(linePos[step], 10, linePos[step], 200)
                 line(10, 45, 700, 45)
                 // text
                 textSize(25)
-                fill("black")
                 textAlign(CENTER)
                 text("Step", 35, 35)
                 text("Statement", 150, 35)
-                text("Explanation", linePos[cycle] + 80, 35)
+                text("Explanation", linePos[step] + 80, 35)
                 textAlign(LEFT)
-                text(cycle + 1, 35, 90)
-                text(equations[cycle], 100, 70, 223, 100)
-                text(explanation[cycle], linePos[cycle] + 10, 70, 450, 200)
+                text(step + 1, 35, 90)
+                text(equations[step], 100, 70, 223, 100)
+                text(explanation[step], linePos[step] + 10, 70, 450, 200)
                 
+                
+                // shape
                 strokeWeight(2)
+                fill("red")
+                text("A", 80, 510)
+                text("B", 180, 305)
+                text("C", 605, 305)
+                text("D", 505, 510)
+                text("E", 440, 295) 
+                text("F", 245, 523)
                 fill("white")
-                // quad(x1, y1, x2, y2, x3, y3, x4, y4)
-                // arc(x, y, w, h, start, stop, [mode], [detail])
-                if (cycle == 0) {
-                    // I split it apart to make it easier to see the x,y coords
-                    // Shape
-                    quad(200,300,  600,300,  500,500,  100,500 )
-                    line(200, 300, 500, 500)
-                    line(450, 300, 250, 500)
-                    // AB congruent to CD
-                    stroke("red")
-                    line(135, 395, 165, 405)
-                    line(535, 395, 565, 405)
-                    // AF congruent to EC
-                    line(175, 485, 175, 515)
-                    line(185, 485, 185, 515)
-                    line(525, 285, 525, 315)
-                    line(535, 285, 535, 315)
-                    // angle ABG congruent to angle CDG
-                    noFill()
-                    arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
-                    arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
-                    // Letters
-                    strokeWeight(1)
-                    fill("red")
-                    text("A", 80, 510)
-                    text("B", 180, 305)
-                    text("C", 605, 305)
-                    text("D", 505, 510)
-                    text("E", 440, 295)
-                    text("G", 370, 405)
-                    text("F", 245, 523)
-                }
-                if (cycle == 1) {
-                    quad(200,300,  600,300,  500,500,  100,500 )
-                    line(200, 300, 500, 500)
-                    
-                    // AB congruent to CD
-                    stroke("red")
-                    line(135, 395, 165, 405)
-                    line(535, 395, 565, 405)
-                    // angle ABG congruent to angle CDG
-                    noFill()
-                    arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
-                    arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
-                    // BGD congruent to itself
-                    line(345, 415, 365, 390)
-                    line(335, 410, 355, 385)
-                    line(325, 405, 345, 380)
-                    // Letters
-                    strokeWeight(1)
-                    fill("red")
-                    text("A", 80, 510)
-                    text("B", 180, 305)
-                    text("C", 605, 305)
-                    text("D", 505, 510)
-                    text("E", 440, 295)
-                    text("G", 370, 405)
-                    text("F", 245, 523)
-                } else if(cycle == 2) {
-                    stroke("green")
-                    line(200, 300, 600, 300)
-                    line(600, 300, 500, 500)
-                    stroke("blue")
-                    line(500, 500, 100, 500)
-                    line(100, 500, 200, 300)
+                quad(200,300,  600,300,  500,500,  100,500 )
+                line(200, 300, 500, 500)
+                // angle ABG congruent to angle CDG
+                // AB congruent to CD
+                stroke("red")
+                line(135, 395, 165, 405)
+                line(535, 395, 565, 405)
+                noFill()
+                arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
+                arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
+                if (step == 0 || step >= 5) {
                     stroke("black")
-                    line(200, 300, 500, 500)
-                    
-                    // AB congruent to CD
+                    line(450, 300, 250, 500)
                     stroke("red")
-                    line(135, 395, 165, 405)
-                    line(535, 395, 565, 405)
-                    // angle ABG congruent to angle CDG
-                    noFill()
-                    arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
-                    arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
+                    // AF congruent to EC
+                    line(175, 485, 175, 515)
+                    line(185, 485, 185, 515)
+                    line(525, 285, 525, 315)
+                    line(535, 285, 535, 315)
+                    if (step >= 4) {
+                        // angle CBD congruent to angle ADB
+                        arc(200, 300, 60, 60, 0, 3.14/5)
+                        arc(200, 300, 70, 70, 0, 3.14/5)
+                        arc(500, 500, 60, 60, 3.14, 3.14*1.2)
+                        arc(500, 500, 70, 70, 3.14, 3.14*1.2)
+                        if (step >= 5) {
+                            // BE congruent to FD
+                            line(330, 285, 330, 315)
+                            line(320, 285, 320, 315)
+                            line(310, 285, 310, 315)
+                            line(373, 485, 373, 515)
+                            line(383, 485, 383, 515)
+                            line(393, 485, 393, 515)
+                            if (step >= 6) {
+                                // angle BGE is congruent to angle FGD
+                                arc(350, 400, 50, 50, 3.14*1.2, 3.14*1.75)
+                                arc(350, 400, 60, 60, 3.14*1.2, 3.14*1.75)
+                                arc(350, 400, 70, 70, 3.14*1.2, 3.14*1.75)
+                                arc(350, 400, 50, 50, 3.14/5, 3.14/1.35)
+                                arc(350, 400, 60, 60, 3.14/5, 3.14/1.35)
+                                arc(350, 400, 70, 70, 3.14/5, 3.14/1.35)
+                                if (step == 7) {
+                                    stroke("green")
+                                    triangle(200, 300, 350, 400, 450, 300)
+                                    stroke("blue")
+                                    triangle(500, 500, 250, 500, 350, 400)
+                                }
+                                if (step == 8) {
+                                        // EG is congruent to FG
+                                        stroke("green")
+                                        line(380, 340, 420, 360)
+                                        line(390, 335, 430, 355)
+                                        line(400, 330, 440, 350)
+                                        line(410, 325, 450, 345)
+                                        line(270, 450, 310, 470)
+                                        line(280, 445, 320, 465)
+                                        line(290, 440, 330, 460)
+                                        line(300, 435, 340, 455)
+                                        text("Solved!", 350, 200)
+                                    }
+                            }
+                        }
+                    }
+                    stroke("black")
+                    fill("red")
+                    text("G", 370, 405)
+                } else if (step >= 1) {
                     // BGD congruent to itself
                     line(345, 415, 365, 390)
                     line(335, 410, 355, 385)
-                    line(325, 405, 345, 380)
-                    // Letters
-                    strokeWeight(1)
-                    fill("red")
-                    text("A", 80, 510)
-                    text("B", 180, 305)
-                    text("C", 605, 305)
-                    text("D", 505, 510)
-                    text("E", 440, 295)
-                    text("G", 370, 405)
-                    text("F", 245, 523)
-                } else if (cycle == 3) {
-                    quad(200,300,  600,300,  500,500,  100,500 )
-                    line(200, 300, 500, 500)
-                    
-                    // AB congruent to CD
-                    stroke("red")
-                    line(135, 395, 165, 405)
-                    line(535, 395, 565, 405)
-                    // angle ABG congruent to angle CDG
-                    noFill()
-                    arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
-                    arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
-                    // AD congruent to BC
-                    line(400, 285, 400, 315)
-                    line(390, 285, 390, 315)
-                    line(410, 285, 410, 315)
-                    line(300, 485, 300, 515)
-                    line(290, 485, 290, 515)
-                    line(310, 485, 310, 515)
-
-                    // Letters
-                    strokeWeight(1)
-                    fill("red")
-                    text("A", 80, 510)
-                    text("B", 180, 305)
-                    text("C", 605, 305)
-                    text("D", 505, 510)
-                    text("E", 440, 295)
-                    text("G", 370, 405)
-                    text("F", 245, 523)
-                } else if (cycle == 4) {
-                    quad(200,300,  600,300,  500,500,  100,500 )
-                    line(200, 300, 500, 500)
-                    
-                    // AB congruent to CD
-                    stroke("red")
-                    line(135, 395, 165, 405)
-                    line(535, 395, 565, 405)
-                    // angle ABG congruent to angle CDG
-                    noFill()
-                    arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
-                    arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
-                    // AD congruent to BC
-                    line(400, 285, 400, 315)
-                    line(390, 285, 390, 315)
-                    line(410, 285, 410, 315)
-                    line(300, 485, 300, 515)
-                    line(290, 485, 290, 515)
-                    line(310, 485, 310, 515)
-                    // angle CBD congruent to angle ADB
-                    arc(200, 300, 60, 60, 0, 3.14/5)
-                    arc(200, 300, 70, 70, 0, 3.14/5)
-                    arc(500, 500, 60, 60, 3.14, 3.14*1.2)
-                    arc(500, 500, 70, 70, 3.14, 3.14*1.2)
-
-                    // Letters
-                    strokeWeight(1)
-                    fill("red")
-                    text("A", 80, 510)
-                    text("B", 180, 305)
-                    text("C", 605, 305)
-                    text("D", 505, 510)
-                    text("E", 440, 295)
-                    text("G", 370, 405)
-                    text("F", 245, 523)
-
-                } else if (cycle == 5) {
-                    quad(200,300,  600,300,  500,500,  100,500 )
-                    line(200, 300, 500, 500)
-                    line(450, 300, 250, 500)
-                    // AB congruent to CD
-                    stroke("red")
-                    line(135, 395, 165, 405)
-                    line(535, 395, 565, 405)
-                    // AF congruent to EC
-                    line(175, 485, 175, 515)
-                    line(185, 485, 185, 515)
-                    line(525, 285, 525, 315)
-                    line(535, 285, 535, 315)
-                    // angle ABG congruent to angle CDG
-                    noFill()
-                    arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
-                    arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
-                    // BE congruent to FD
-                    line(330, 285, 330, 315)
-                    line(320, 285, 320, 315)
-                    line(310, 285, 310, 315)
-                    line(373, 485, 373, 515)
-                    line(383, 485, 383, 515)
-                    line(393, 485, 393, 515)
-                    // angle CBD congruent to angle ADB
-                    arc(200, 300, 60, 60, 0, 3.14/5)
-                    arc(200, 300, 70, 70, 0, 3.14/5)
-                    arc(500, 500, 60, 60, 3.14, 3.14*1.2)
-                    arc(500, 500, 70, 70, 3.14, 3.14*1.2)
-                    // Letters
-                    strokeWeight(1)
-                    fill("red")
-                    text("A", 80, 510)
-                    text("B", 180, 305)
-                    text("C", 605, 305)
-                    text("D", 505, 510)
-                    text("E", 440, 295)
-                    text("G", 370, 405)
-                    text("F", 245, 523)
-                } else if (cycle == 6) {
-                    quad(200,300,  600,300,  500,500,  100,500 )
-                    line(200, 300, 500, 500)
-                    line(450, 300, 250, 500)
-                    // AB congruent to CD
-                    stroke("red")
-                    line(135, 395, 165, 405)
-                    line(535, 395, 565, 405)
-                    // AF congruent to EC
-                    line(175, 485, 175, 515)
-                    line(185, 485, 185, 515)
-                    line(525, 285, 525, 315)
-                    line(535, 285, 535, 315)
-                    // angle ABG congruent to angle CDG
-                    noFill()
-                    arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
-                    arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
-                    // BE congruent to FD
-                    line(330, 285, 330, 315)
-                    line(320, 285, 320, 315)
-                    line(310, 285, 310, 315)
-                    line(373, 485, 373, 515)
-                    line(383, 485, 383, 515)
-                    line(393, 485, 393, 515)
-                    // angle CBD congruent to angle ADB
-                    arc(200, 300, 60, 60, 0, 3.14/5)
-                    arc(200, 300, 70, 70, 0, 3.14/5)
-                    arc(500, 500, 60, 60, 3.14, 3.14*1.2)
-                    arc(500, 500, 70, 70, 3.14, 3.14*1.2)
-                    // angle BGE is congruent to angle FGD
-                    arc(350, 400, 50, 50, 3.14*1.2, 3.14*1.75)
-                    arc(350, 400, 60, 60, 3.14*1.2, 3.14*1.75)
-                    arc(350, 400, 70, 70, 3.14*1.2, 3.14*1.75)
-                    arc(350, 400, 50, 50, 3.14/5, 3.14/1.35)
-                    arc(350, 400, 60, 60, 3.14/5, 3.14/1.35)
-                    arc(350, 400, 70, 70, 3.14/5, 3.14/1.35)
-                    // Letters
-                    strokeWeight(1)
-                    fill("red")
-                    text("A", 80, 510)
-                    text("B", 180, 305)
-                    text("C", 605, 305)
-                    text("D", 505, 510)
-                    text("E", 440, 295)
-                    text("G", 370, 405)
-                    text("F", 245, 523)
-                } else if (cycle == 7) {
-                    quad(200,300,  600,300,  500,500,  100,500 )
-                    line(200, 300, 500, 500)
-                    line(450, 300, 250, 500)
-                    stroke("green")
-                    line(200, 300, 350, 400)
-                    line(200, 300, 450, 300)
-                    line(350, 400, 450, 300)
-                    stroke("blue")
-                    line(500, 500, 250, 500)
-                    line(500, 500, 350, 400)
-                    line(250, 500, 350, 400)
-                    // AB congruent to CD
-                    stroke("red")
-                    line(135, 395, 165, 405)
-                    line(535, 395, 565, 405)
-                    // AF congruent to EC
-                    line(175, 485, 175, 515)
-                    line(185, 485, 185, 515)
-                    line(525, 285, 525, 315)
-                    line(535, 285, 535, 315)
-                    // angle ABG congruent to angle CDG
-                    noFill()
-                    arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
-                    arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
-                    // BE congruent to FD
-                    line(330, 285, 330, 315)
-                    line(320, 285, 320, 315)
-                    line(310, 285, 310, 315)
-                    line(373, 485, 373, 515)
-                    line(383, 485, 383, 515)
-                    line(393, 485, 393, 515)
-                    // angle CBD congruent to angle ADB
-                    arc(200, 300, 60, 60, 0, 3.14/5)
-                    arc(200, 300, 70, 70, 0, 3.14/5)
-                    arc(500, 500, 60, 60, 3.14, 3.14*1.2)
-                    arc(500, 500, 70, 70, 3.14, 3.14*1.2)
-                    // angle BGE is congruent to angle FGD
-                    arc(350, 400, 50, 50, 3.14*1.2, 3.14*1.75)
-                    arc(350, 400, 60, 60, 3.14*1.2, 3.14*1.75)
-                    arc(350, 400, 70, 70, 3.14*1.2, 3.14*1.75)
-                    arc(350, 400, 50, 50, 3.14/5, 3.14/1.35)
-                    arc(350, 400, 60, 60, 3.14/5, 3.14/1.35)
-                    arc(350, 400, 70, 70, 3.14/5, 3.14/1.35)
-                    // Letters
-                    strokeWeight(1)
-                    fill("red")
-                    text("A", 80, 510)
-                    text("B", 180, 305)
-                    text("C", 605, 305)
-                    text("D", 505, 510)
-                    text("E", 440, 295)
-                    text("G", 370, 405)
-                    text("F", 245, 523)
-                } else if (cycle == 8) {
-                    quad(200,300,  600,300,  500,500,  100,500 )
-                    line(200, 300, 500, 500)
-                    line(450, 300, 250, 500)
-                    // AB congruent to CD
-                    stroke("red")
-                    line(135, 395, 165, 405)
-                    line(535, 395, 565, 405)
-                    // AF congruent to EC
-                    line(175, 485, 175, 515)
-                    line(185, 485, 185, 515)
-                    line(525, 285, 525, 315)
-                    line(535, 285, 535, 315)
-                    // angle ABG congruent to angle CDG
-                    noFill()
-                    arc(200, 300, 50, 50, 3.14/5, 3.14/1.5)
-                    arc(500, 500, 50, 50, 3.14*1.2,3.14*1.65)
-                    // BE congruent to FD
-                    line(330, 285, 330, 315)
-                    line(320, 285, 320, 315)
-                    line(310, 285, 310, 315)
-                    line(373, 485, 373, 515)
-                    line(383, 485, 383, 515)
-                    line(393, 485, 393, 515)
-                    // angle CBD congruent to angle ADB
-                    arc(200, 300, 60, 60, 0, 3.14/5)
-                    arc(200, 300, 70, 70, 0, 3.14/5)
-                    arc(500, 500, 60, 60, 3.14, 3.14*1.2)
-                    arc(500, 500, 70, 70, 3.14, 3.14*1.2)
-                    // angle BGE is congruent to angle FGD
-                    arc(350, 400, 50, 50, 3.14*1.2, 3.14*1.75)
-                    arc(350, 400, 60, 60, 3.14*1.2, 3.14*1.75)
-                    arc(350, 400, 70, 70, 3.14*1.2, 3.14*1.75)
-                    arc(350, 400, 50, 50, 3.14/5, 3.14/1.35)
-                    arc(350, 400, 60, 60, 3.14/5, 3.14/1.35)
-                    arc(350, 400, 70, 70, 3.14/5, 3.14/1.35)
-                    // EG is congruent to FG
-                    stroke("green")
-                    line(380, 340, 420, 360)
-                    line(390, 335, 430, 355)
-                    line(400, 330, 440, 350)
-                    line(410, 325, 450, 345)
-                    line(270, 450, 310, 470)
-                    line(280, 445, 320, 465)
-                    line(290, 440, 330, 460)
-                    line(300, 435, 340, 455)
-                    text("Solved!", 350, 200)
-                    // Letters
-                    strokeWeight(1)
-                    fill("red")
-                    text("A", 80, 510)
-                    text("B", 180, 305)
-                    text("C", 605, 305)
-                    text("D", 505, 510)
-                    text("E", 440, 295)
-                    text("G", 370, 405)
-                    text("F", 245, 523)
-                }
+                    if (step == 2) {
+                        stroke("green")
+                        line(200, 300, 600, 300)
+                        line(600, 300, 500, 500)
+                        stroke("blue")
+                        line(500, 500, 100, 500)
+                        line(100, 500, 200, 300)
+                    } else if (step >= 3) {
+                        // AD congruent to BC
+                        line(400, 285, 400, 315)
+                        line(390, 285, 390, 315)
+                        line(410, 285, 410, 315)
+                        line(300, 485, 300, 515)
+                        line(290, 485, 290, 515)
+                        line(310, 485, 310, 515)
+                        if (step == 4) {
+                            // angle CBD congruent to angle ADB
+                            arc(200, 300, 60, 60, 0, 3.14/5)
+                            arc(200, 300, 70, 70, 0, 3.14/5)
+                            arc(500, 500, 60, 60, 3.14, 3.14*1.2)
+                            arc(500, 500, 70, 70, 3.14, 3.14*1.2)
+                        }
+                    }
+                } 
             }
 
             function keyPressed() {
-                if (keyCode == RIGHT_ARROW && cycle < 8) {
-                    cycle++
+                if (keyCode == RIGHT_ARROW && step < 8) {
+                    step++
                 }
-                if (keyCode == LEFT_ARROW && !(cycle <= 0)) {
-                    cycle--
+                if (keyCode == LEFT_ARROW && !(step <= 0)) {
+                    step--
                 }
             }
             
